@@ -1,0 +1,56 @@
+require('dotenv').config('')
+const fs = require('fs').promises
+const { mcsClient } = require('mcs-client')
+const client = new mcsClient({
+  privateKey: process.env.PRIVATE_KEY,
+  rpcUrl: process.env.RPC_URL,
+})
+
+async function main() {
+  const fileArray = [
+    { fileName: 'AAA01AAA', file: await fs.readFile('./file/AAA01AAA') },
+    { fileName: 'AAA02AAA', file: await fs.readFile('./file/AAA02AAA') },
+    { fileName: 'AAA03AAA', file: await fs.readFile('./file/AAA03AAA') },
+    { fileName: 'AAA04AAA', file: await fs.readFile('./file/AAA04AAA') },
+    { fileName: 'AAA05AAA', file: await fs.readFile('./file/AAA05AAA') },
+    { fileName: 'AAA06AAA', file: await fs.readFile('./file/AAA06AAA') },
+    { fileName: 'AAA07AAA', file: await fs.readFile('./file/AAA07AAA') },
+    { fileName: 'AAA08AAA', file: await fs.readFile('./file/AAA08AAA') },
+    { fileName: 'AAA09AAA', file: await fs.readFile('./file/AAA09AAA') },
+    { fileName: 'AAA10AAA', file: await fs.readFile('./file/AAA10AAA') },
+    { fileName: 'AAA11AAA', file: await fs.readFile('./file/AAA11AAA') },
+    { fileName: 'AAA12AAA', file: await fs.readFile('./file/AAA12AAA') },
+    { fileName: 'AAA13AAA', file: await fs.readFile('./file/AAA13AAA') },
+    { fileName: 'AAA14AAA', file: await fs.readFile('./file/AAA14AAA') },
+    { fileName: 'AAA15AAA', file: await fs.readFile('./file/AAA15AAA') },
+    { fileName: 'AAA16AAA', file: await fs.readFile('./file/AAA16AAA') },
+    { fileName: 'AAA17AAA', file: await fs.readFile('./file/AAA17AAA') },
+    { fileName: 'AAA18AAA', file: await fs.readFile('./file/AAA18AAA') },
+    { fileName: 'AAA19AAA', file: await fs.readFile('./file/AAA19AAA') },
+    { fileName: 'AAA20AAA', file: await fs.readFile('./file/AAA20AAA') },
+    { fileName: 'AAA21AAA', file: await fs.readFile('./file/AAA21AAA') },
+    { fileName: 'AAA22AAA', file: await fs.readFile('./file/AAA22AAA') },
+    { fileName: 'AAA23AAA', file: await fs.readFile('./file/AAA23AAA') },
+    { fileName: 'AAA24AAA', file: await fs.readFile('./file/AAA24AAA') },
+    { fileName: 'AAA25AAA', file: await fs.readFile('./file/AAA25AAA') },
+    { fileName: 'AAA26AAA', file: await fs.readFile('./file/AAA26AAA') },
+    { fileName: 'AAA27AAA', file: await fs.readFile('./file/AAA27AAA') },
+    { fileName: 'AAA28AAA', file: await fs.readFile('./file/AAA28AAA') },
+    { fileName: 'AAA29AAA', file: await fs.readFile('./file/AAA29AAA') },
+    { fileName: 'AAA30AAA', file: await fs.readFile('./file/AAA30AAA') },
+ 
+  ]
+
+//optional, showing default options
+  const options = {
+    delay: 1, // delay between upload API calls for each file. May need to be raised for larger files
+    duration: 525, // the number of days to store the file on the Filecoin network.
+    fileType: 0, // set to 1 for nft metadata files. type 1 files will not show on the UI.
+  }
+
+  const uploadResponses = await client.upload(fileArray, options)
+  console.log(uploadResponses)
+}
+
+main()
+
